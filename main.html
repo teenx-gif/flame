@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ASTROWORLD</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        color: white;
+        text-align: center;
+        background: url('./img/photo_2025-08-09_21-43-15.jpg') no-repeat center center/cover;
+        overflow: hidden;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.4);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 3em;
+        font-weight: bold;
+        animation: neonGlow 3s infinite alternate;
+    }
+
+    h1 span {
+        background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+        background-size: 300%; 
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: neonText 5s infinite linear;
+    }
+
+    @keyframes neonGlow {
+        0% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 40px #00ffff; }
+        100% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ff00ff; }
+    }
+
+    @keyframes neonText {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+    }
+
+    p {
+        margin-top: 5px;
+        font-size: 1.2em;
+        opacity: 0.8;
+        animation: fadeIn 2s ease forwards;
+    }
+
+    .buttons {
+        margin-top: 20px;
+        opacity: 0;
+        animation: fadeIn 3s ease forwards;
+        animation-delay: 2s;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body>
+<div class="overlay">
+    <h1>WELCOME TO <span>ASTROWORLD</span></h1>
+    <p>2018 summer vibe • VIP • sun • Travis Scott</p>
+    <div class="buttons">
+        <a href="./w.html" class="btn">🎢 Enter the Park</a>
+        <a href="./archive.html" class="btn">📂 The Archive</a>
+        <a href="./vault.html" class="btn">🔊 The Vault</a>
+        <a href="./q.html" class="btn">ℹ️ About</a>
+    </div>
+</div>
+
+<audio id="introAudio" src="intro.mp3" preload="auto"></audio>
+
+<script>
+    window.addEventListener('load', () => {
+        const audio = document.getElementById('introAudio');
+        // В браузерах автозапуск звука блокируется, поэтому включаем после клика
+        document.body.addEventListener('click', () => {
+            audio.play().catch(err => console.log('Автовоспроизведение заблокировано'));
+        }, { once: true });
+    });
+</script>
+</body>
+</html>

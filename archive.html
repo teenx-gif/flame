@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vault — Travis Scott Moments</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #fff;
+            overflow-x: hidden;
+            transition: background 1s ease;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.5);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            transform: scale(0.95);
+            transition: all 0.4s ease;
+            opacity: 0;
+        }
+
+        .card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.9) contrast(1.1) saturate(1.2);
+        }
+
+        .card:hover {
+            transform: scale(1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            background: rgba(0,0,0,0.6);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin: 30px auto;
+            padding: 12px 25px;
+            background: #000;
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #ff5f6d;
+        }
+     
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+
+    body {
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #ffecd2, #fcb69f, #f6d365, #fda085);
+        background-size: 1600% 1600%;
+        animation: gradientFlow 60s ease infinite;
+        color: #fff;
+        overflow-x: hidden;
+        transition: background 1s ease;
+    }
+
+    @keyframes gradientFlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    </style>
+</head>
+<body>
+    <header>THE Archive — Travis Scott Moments</header>
+    
+    <div class="grid">
+        <div class="card"><img src="./img/kylie-plane.jpg"><div class="caption">Travis & Kylie on Astroworld jet (2018)</div></div>
+        <div class="card"><img src="./img/swiss-2017.jpg"><div class="caption">Legendary Upper Echelon in Switzerland (2017)</div></div>
+        <div class="card"><img src="./img/nike-meme.jpg"><div class="caption">The "Nike shoes bigger than him" meme</div></div>
+        <div class="card"><img src="./img/snl-2018.jpg"><div class="caption">SNL with Kevin Parker & John Mayer (Blond Travis)</div></div>
+        <div class="card"><img src="./img/acl-2018.jpg"><div class="caption">ACL Festival Austin, Texas (2018)</div></div>
+        <div class="card"><img src="./img/sicko=mode-bts.jpg"><div class="caption">Sicko Mode BTS shoot</div></div>
+        
+    </div>
+
+    <div style="text-align:center;">
+        <a href="main.html" class="back-btn">⬅ Back to Main</a>
+    </div>
+
+    <script>
+        // Анимация появления карточек при загрузке
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll(".card");
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = "1";
+                    card.style.transform = "scale(1)";
+                }, index * 200);
+            });
+        });
+
+        // Авто-градиент (меняется каждые 5 сек)
+        // const gradients = ["linear-gradient(135deg, #ff9a9e, #fad0c4)",
+        //     "linear-gradient(135deg, #fbc2eb, #a6c1ee)",
+        //     "linear-gradient(135deg, #ffecd2, #fcb69f)",
+        //     "linear-gradient(135deg, #f6d365, #fda085)"
+        // ];
+        // let gIndex = 0;
+        // setInterval(() => {
+        //     gIndex = (gIndex + 1) % gradients.length;
+        //     document.body.styl
+        //     e.background = gradients[gIndex];
+        // }, 5000);
+    </script>
+</body>
+</html>

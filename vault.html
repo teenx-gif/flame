@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Vault - Astroworld</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        color: white;
+        transition: background 0.5s ease;
+    }
+    .bg-blur {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        filter: blur(35px) brightness(0.5);
+        z-index: -1;
+        transition: background-image 0.6s ease;
+    }
+    .vault {
+        background: rgba(0,0,0,0.6);
+        padding: 20px;
+        border-radius: 20px;
+        text-align: center;
+        backdrop-filter: blur(8px);
+        max-width: 350px;
+    }
+    img {
+        width: 250px;
+        height: 250px;
+        object-fit: cover; /* делает обложку ровным квадратом */
+        border-radius: 15px;
+        box-shadow: 0 0 30px rgba(255,179,71,0.8);
+    }
+    h2 {
+        margin: 15px 0 5px;
+        font-size: 1.5rem;
+    }
+    p {
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+    audio {
+        width: 100%;
+        margin-top: 15px;
+    }
+    .controls {
+        margin-top: 10px;
+    }
+    .controls button {
+        background: rgba(255,179,71,0.9);
+        border: none;
+        padding: 8px 12px;
+        margin: 0 5px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .controls button:hover {
+        background: rgba(255,140,0,1);
+    }
+    .back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 8px 15px;
+        background: rgba(0,0,0,0.6);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: 0.2s;
+    }
+    .back-btn:hover {
+        background: rgba(255,179,71,0.8);
+    }
+</style>
+</head>
+<body>
+
+<div class="bg-blur" id="bg"></div>
+
+<button class="back-btn" onclick="window.location.href='main.html'">← Back to Main</button>
+
+<div class="vault">
+    <img id="cover" src="covers/stargazing.jpg" alt="cover">
+    <h2 id="title">STARGAZING</h2>
+    <p id="album">La Flame and others (2018)</p>
+    <audio id="audio" controls>
+        <source src="tracks/stargazing.flac" type="audio/flac">
+    </audio>
+    <div class="controls">
+        <button onclick="prevTrack()">⏮ Prev</button>
+        <button onclick="nextTrack()">Next ⏭</button>
+    </div>
+</div>
+
+<script>
+ const tracks = [
+        {title: "STARGAZING", file: "tracks/stargazing.mp3", cover: "covers/stargazing.jpg"},
+        {title: "CAROUSEL", file: "tracks/carousel.mp3", cover: "covers/carouse.jpg"},
+        {title: "SICKO MODE", file: "tracks/sicko-mode.mp3", cover: "covers/sicko-mode.jpg"},
+        {title: "R.I.P. SCREW", file: "tracks/rip=screw.mp3", cover: "covers/rip-screw.jpg"},
+        {title: "STOP TRYING TO BE GOD", file: "tracks/stop-trying-to-be-god.mp3", cover: "covers/stop-trying.jpg"},
+        {title: "NO BYSTANDERS", file: "tracks/no-bystanders.mp3", cover: "covers/no-bystanders.jpg"},
+        {title: "SKELETONS", file: "tracks/skeletons.mp3", cover: "covers/skeletons.jpg"},
+        {title: "WAKE UP", file: "tracks/wake-up.mp3", cover: "covers/carousel.jpg"},
+        {title: "5% TINT", file: "tracks/5-tint.mp3", cover: "covers/5-percentt.jpg"},
+        {title: "NC-17", file: "tracks/NC-17.mp3", cover: "covers/NC-17.jpg"},
+        {title: "ASTROTHUNDER", file: "tracks/astrothunder.mp3", cover: "covers/astrothunder.jpg"},
+        {title: "YOSEMITE", file: "tracks/yosemite.mp3", cover: "covers/yosemite.jpg"},
+        {title: "CAN'T SAY", file: "tracks/cant-say.mp3", cover: "covers/cant-say.jpg"},
+        {title: "WHO? WHAT!", file: "tracks/who-what.mp3", cover: "covers/who-what.jpg"},
+        {title: "BUTTERFLY EFFECT", file: "tracks/butterfly-effect.mp3", cover: "covers/butterfly_effect.jpg"},
+        {title: "HOUSTONFORNICATION", file: "tracks/houstonfornication.mp3", cover: "covers/houstonfornication.jpg"},
+        {title: "COFFEE BEAN", file: "tracks/coffee-bean.mp3", cover: "covers/coffee-bean.jpg"},
+        {title: "WATCH", file: "tracks/watch.mp3", cover: "covers/watch.jpg"},
+        {title: "ZEZE", file: "tracks/zeze.mp3", cover: "covers/zeze.jpg"},
+        {title: "HIGHEST IN THE ROOM", file: "tracks/room.mp3", cover: "covers/room.jpg"}
+        
+    ];
+        let current = 0;  
+const audio = document.getElementById('audio');  
+const cover = document.getElementById('cover');  
+const title = document.getElementById('title');  
+const bg = document.getElementById('bg');  
+
+function loadTrack(index) {  
+    audio.src = tracks[index].file;  
+    cover.src = tracks[index].cover;  
+    title.textContent = tracks[index].title;  
+    bg.style.backgroundImage = `url(${tracks[index].cover})`;  
+    audio.play();  
+}  
+
+function nextTrack() {  
+    current = (current + 1) % tracks.length;  
+    loadTrack(current);  
+}  
+
+function prevTrack() {  
+    current = (current - 1 + tracks.length) % tracks.length;  
+    loadTrack(current);  
+}  
+bg.style.backgroundImage = url `(${tracks[0].cover})`;  
+
+// Стартовый фон  
+// bg.style.backgroundImage = url(${tracks[0].cover});
+//     let current = 0;
+//     const audio = document.getElementById('audio');
+//     const cover = document.getElementById('cover');
+//     const title = document.getElementById('title');
+//     const bg = document.getElementById('bg');
+
+//     // function loadTrack(index) {
+//     //     audio.src = tracks[index].file;
+//     //     cover.src = tracks[index].cover;
+//     //     title.textContent = tracks[index].title;
+//     //     bg.style.backgroundImage = `url(${tracks[index].cover})`;
+//     //     audio.play();
+//     // }
+// //     function loadTrack(index) {
+// //     audio.src = tracks[index].file;
+// //     cover.src = tracks[index].cover;
+// //     title.textContent = tracks[index].title;
+// //     bg.style.backgroundImage = `url(${tracks[index].cover})`;
+// //     audio.load();
+// //     audio.play();
+// // }
+
+// //     function nextTrack() {
+// //         current = (current + 1) % tracks.length;
+// //         loadTrack(current);
+// //     }
+
+// //     function prevTrack() {
+// //         current = (current - 1 + tracks.length) % tracks.length;
+// //         loadTrack(current);
+// //     }
+// //     bg.style.backgroundImage = `url(${tracks[0].cover})`;
+// //     // bg.style.backgroundImage = `url (${tracks[0].cover})`;
+
+// //     // Стартовый фон
+// //     // bg.style.backgroundImage = url(${tracks[0].cover});
+</script>
+
+</body>
+</html>
